@@ -20,8 +20,8 @@ The app is what developers build using the SDK. The app assumes the SDK will pro
 
 The app.js file does two things:
 
-1. Exports an instance of the SDK server module that is configured to run app.js
-2. Defines the front-end JS application that the server will render
+1. Creates server instance using the SDK server module
+2. Creates a front-end JS application that the server will render
 
 The app.js file is packaged with Webpack to be distributed to an AWS Lambda.
 

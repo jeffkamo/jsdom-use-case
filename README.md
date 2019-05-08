@@ -5,14 +5,14 @@ Specifically, our project is an SDK library that includes a set of tools streaml
 
 # Architecture
 
-## SDK -> server.js
+## SDK → server.js
 
 The server class instantiates an express app. The server's primary purpose is to server-side render static HTML from the JavaScript app.
 
 The server is intended to work in a local dev environment as well as in a remote environment (i.e. AWS Lambda).
 
 
-## App -> app.js
+## App → app.js
 
 The app is what developers build using the SDK. The app assumes the SDK will provide the working server that the app can be delivered from.
 

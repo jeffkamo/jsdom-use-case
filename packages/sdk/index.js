@@ -1,7 +1,10 @@
 var express = require('express')
 var fs = require('fs')
 var path = require('path')
-var JSDOM = require('jsdom').JSDOM
+var jsdom = require('jsdom')
+var JSDOM = jsdom.JSDOM
+
+const APP_TARGET = '#target'
 
 class Server {
     constructor(options) {
@@ -14,62 +17,58 @@ class Server {
     }
 
     _renderApp() {
-        var pathToSrc = `${this._url}${this._pathToAppScript}`
-
         var html = [
             '<!DOCTYPE html>',
             '<html>',
             '<head></head>',
             '<body id="target">',
                 '<div>Waiting for App to mount...</div>',
-                `<script src="${pathToSrc}"></script>`,
             '</body>',
             '</html>'
         ].join('')
 
         var config = {
             contentType: 'text/html',
+            runScripts: 'dangerously',
+            resources: 'usable',
             pretendToBeVisual: true,
             strictSSL: true,
             url: this._url
         }
 
-        return new JSDOM(html, config)
-            .window
-            .document
-            .querySelector('html')
-            .outerHTML
+        var serverWindow = new JSDOM(html, config).window
+        var serverDocument = serverWindow.document
+
+        return new Promise((resolve) => {
+            serverWindow.renderComplete = resolve
+
+            const appScript = serverDocument.createElement('script')
+            appScript.src = this._pathToAppScript
+            serverDocument.querySelector(APP_TARGET).appendChild(appScript)
+
+            // Now we wait for app.js to invoke `resolve`
+        }).then((window) => {
+            // `window` is passed in from app.js
+            return window.document.querySelector('html').outerHTML
+        })
     }
 
     _configureExpressApp() {
+        var handlePublic = express.static(this._pathToPublic)
+        var handleRoot = (req, res) => {
+            this._renderApp()
+                .then((html) => res.send(html))
+        }
+
         this.app = express()
-
-        this.app.get('/', (req, res) => {
-            var html = this._renderApp()
-            res.send(html)
-        })
-
-        console.log('- - - - - - - - - - - - - - - - - - - - -')
-        console.log('path to /public -> ', this._pathToPublic)
-
-        this.app.use('/public', express.static(this._pathToPublic))
+        this.app.get('/', handleRoot)
+        this.app.use('/public', handlePublic)
     }
 
     _startServer() {
         var listener = this.app.listen(this._port, function () {
             console.log('Your app is listening on port ' + listener.address().port)
         })
-    }
-
-    _loadAppScript() {
-        var path = this._pathToAppScript
-        try {
-            source = fs.readFileSync(path, 'utf-8')
-        } catch (err) {
-            console.error(
-                `Could not load ${path}: ${err}`
-            )
-        }
     }
 }
 

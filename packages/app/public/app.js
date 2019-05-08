@@ -70,10 +70,18 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-var app = document.createElement('div')
-app.innerText = 'Example App has been mounted!'
-document.querySelector('#target').appendChild(app)
+const APP_TARGET = '#target'
 
+console.log('App script running...')
+var app = document.createElement('div')
+app.innerHTML = 'This element was rendered server side (duplicate rendered client side)'
+document.querySelector(APP_TARGET).appendChild(app)
+
+// And we're done!
+window.renderComplete(window)
+
+console.log('App script complete...')
+window.renderComplete()
 
 /***/ })
 /******/ ]);

@@ -7,12 +7,16 @@ Specifically, our project is an SDK library that includes a set of tools streaml
 
 ## SDK -> server.js
 
-The server class is an express application designed to run locally as well as in an AWS Lambda. It's primary purpose is to run the JS App in a JSDOM environment and print its rendered HTML as a string, then send it to the client.
+The server class instantiates an express app. The server's primary purpose is to server-side render static HTML from the JavaScript app.
+
+The server is intended to work in a local dev environment as well as in a remote environment (i.e. AWS Lambda).
 
 
 ## App -> app.js
 
-The app would normally be a React app, but for demonstration purposes, it's just a JavaScript that generates some simple DOM elements that will be rendered by the server.
+The app is what developers build using the SDK. The app assumes the SDK will provide the working server that the app can be delivered from.
+
+> The app would normally be a React app, but for demonstration purposes, it's just a JavaScript that generates some simple DOM elements that will be rendered on the server.
 
 The app.js file does two things:
 

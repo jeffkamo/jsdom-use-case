@@ -49,6 +49,8 @@ ERROR in ../sdk/~/jsdom/lib/jsdom/utils.js
      @ ./server.js
 ```
 
+Notice that this error appears in the App project. This means that its the users of the SDK who are burdened with the error. There are work arounds that can be applied at the app project level, but we (the SDK developers) would rather apply a fix at the SDK level.
+
 
 ## Workaround
 

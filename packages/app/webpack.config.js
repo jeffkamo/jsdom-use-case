@@ -12,7 +12,10 @@ const server = {
     output: {
         path: BUILD_PATH,
         filename: 'server.js'
-    }
+    },
+    externals: {
+		canvas: 'commonjs canvas'
+	}
 }
 
 const app = {

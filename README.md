@@ -77,4 +77,3 @@ The error above can be bypassed by the following (horrible) hack:
 
 4. Repeat the "Run the App" steps above. The server should start now
 5. Visit [http://localhost:9000/](http://localhost:9000/)
-6. The mock application should start, and the "Example App has been mounted!" text should appear

@@ -1,6 +1,6 @@
 This respository is meant to demonstrate the use case that my organization uses JSDOM for one of its projects.
 
-Specifically, our project is an SDK library that includes a set of tools streamline creating server-side rendered a JavaScript applications.
+Specifically, our project is an SDK library that includes a set of tools that streamline creating server-side rendered a JavaScript applications.
 
 
 # Architecture
@@ -41,7 +41,7 @@ Run `npm ci` (or `npm i`) and then `lerna bootstrap`
 
 ```
 ERROR in ../sdk/~/jsdom/lib/jsdom/utils.js
-    Module not found: Error: Can't resolve 'canvas' in '/Users/Atsushi/Mobify/_lab/jsdom-use-case/packages/sdk/node_modules/jsdom/lib/jsdom'
+    Module not found: Error: Can't resolve 'canvas' in '/Users/Atsushi/lab/jsdom-use-case/packages/sdk/node_modules/jsdom/lib/jsdom'
      @ ../sdk/~/jsdom/lib/jsdom/utils.js 166:2-27 172:17-34
      @ ../sdk/~/jsdom/lib/jsdom/browser/Window.js
      @ ../sdk/~/jsdom/lib/api.js

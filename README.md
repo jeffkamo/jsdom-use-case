@@ -30,7 +30,7 @@ The app.js file is packaged with Webpack to be distributed to an AWS Lambda.
 
 ## Pre-requisites
 
-Run `npm ci` (or `npm i`) and then `lerna bootstrap`
+Run `npm ci` (or `npm i`) and then `node_modules/.bin/lerna bootstrap`
 
 
 ## Run the App

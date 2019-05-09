@@ -12,7 +12,7 @@ const server = {
     output: {
         path: BUILD_PATH,
         filename: 'server.js'
-    },
+    }
 }
 
 const app = {
@@ -24,7 +24,7 @@ const app = {
     output: {
         path: BUILD_PATH,
         filename: 'app.js'
-    },
+    }
 }
 
 module.exports = [server, app]

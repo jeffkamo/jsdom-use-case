@@ -36,7 +36,7 @@ Run `npm ci` (or `npm i`) and then `node_modules/.bin/lerna bootstrap`
 ## Run the App
 
 1. From this project root run `cd packages/app`
-2. Run `npm i && npm run build && npm start`
+2. Run `npm run build`
 3. Observe the error in the console. You should see something like this:
 
 ```
